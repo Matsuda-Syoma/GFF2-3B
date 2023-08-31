@@ -1,8 +1,13 @@
 #pragma once
 #include"DxLib.h"
 #include"AbstractScene.h"
+#include"Player.h"
+#include"Stage.h"
 class GameMain : public AbstractScene
 {
+private:
+	Player* player;
+	Stage* stage[63];
 public:
 	GameMain();
 	// コンストラクタ

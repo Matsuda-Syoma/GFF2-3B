@@ -9,7 +9,7 @@ private:
 	int move = 0;
 public:
 	Stage();										// コンストラクタ
-	Stage(float _x,float _y,float _w,float _h, int _image);		// 座標とサイズ指定
+	Stage(float _x,float _y, int _image);		// 座標とサイズ指定
 	~Stage();										// デストラクタ
 	void Init(int type, int move);
 	void Update();

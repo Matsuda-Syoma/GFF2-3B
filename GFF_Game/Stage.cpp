@@ -6,14 +6,14 @@ Stage::Stage()
 }
 
 
-Stage::Stage(float _x, float _y, float _w, float _h, int _image)
+Stage::Stage(float _x, float _y, int _image)
 {
 	x = _x;
 	y = _y;
-	w = _w;
-	h = _h;
-	ImageX = box.left + (_w - _x) / 2;
-	ImageY = box.top + (_h - _y) / 2;
+	w = STAGE_SIZE;
+	h = STAGE_SIZE;
+	//ImageX = box.left + (_w - _x) / 2;
+	//ImageY = box.top + (_h - _y) / 2;
 	Image = _image;
 }
 

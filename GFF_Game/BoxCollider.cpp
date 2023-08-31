@@ -18,7 +18,7 @@ void BoxCollider::GetSize(float& _top, float& _bottom, float& _left, float& _rig
 int BoxCollider::HitBox(BoxCollider boxCollider) const {
 	Box other;			// ‘Šè‚Ì”»’è
 	boxCollider.GetSize(other.top, other.bottom, other.left, other.right);
-	float epsilon = 10.0f;		// Œë·
+	float epsilon = 40.0f;		// Œë·
 	if (other.bottom < box.top) {
 		return 0;
 	}

@@ -6,3 +6,5 @@
 
 #define FRAMERATE 60.0			//フレームレート
 #define UPDATETIME 800
+
+#define STAGE_SIZE 32

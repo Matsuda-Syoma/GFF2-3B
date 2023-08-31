@@ -2,9 +2,9 @@
 GameMain::GameMain()
 {
 	player = new Player();
-	stage[0] = new Stage(0, 450, 640, 480, 0);
-	stage[1] = new Stage(0, 250, 240, 30, 0);
-	stage[2] = new Stage(340, 400, 40, 50, 0);
+	for (int i = 0; i < SCREEN_WIDTH / STAGE_SIZE; i++) {
+		stage[i] = new Stage((STAGE_SIZE * i), SCREEN_HEIGHT - STAGE_SIZE, 0);
+	}
 }
 
 GameMain::~GameMain()

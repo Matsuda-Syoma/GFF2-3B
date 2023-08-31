@@ -8,8 +8,9 @@ Player::Player()
 	h = HEIGHT;
 	speedX = 0;
 	speedY = 0;
-	speedXMax = 150.0f;
-	startX = 4.0f;
+	speedXMax = 300.0f;
+	startX = 15.0f;
+	JumpHitDelay = 0;
 	GroundFlg = false;
 }
 
@@ -28,12 +29,25 @@ void Player::Update()
 	box.top = y;
 	box.bottom = y + h;
 
-	if (speedY < 400 && !GroundFlg) {
-		speedY += 4.0f;
+	if (speedY < 800 && !GroundFlg) {
+		speedY += 16.0f;
 	}
 
-	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_B)) {
+	// jump
 
+	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_B)) {
+		speedY = 400.0f;
+	}
+
+	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_A)) {
+		if (GroundFlg) {
+			speedY += -500.0f;
+			JumpHitDelay = 3;
+		}
+	}
+
+	if (JumpHitDelay > 0) {
+		JumpHitDelay--;
 	}
 
 	// 右入力
@@ -73,7 +87,7 @@ void Player::Update()
 
 void Player::Draw() const
 {
-	DrawBox(box.left, box.top, box.right, box.bottom, 0xff0000, false);
+	DrawBox(box.left, box.top, box.right, box.bottom, 0xff0000, 1);
 }
 
 // コントローラの入力を返す
@@ -86,9 +100,13 @@ bool Player::IsGround(Stage box) {
 	int HitStage = Player::HitBox(box);
 	// 上側に当たったときの判定
 	if (HitStage == 1) {
-		speedY = 0;
+
 		GroundFlg = true;
-		y = GetBoxSide(box, 1) - h;
+		if (JumpHitDelay <= 3 - 2) {
+			speedY = 0;
+			y = GetBoxSide(box, 1) - h;
+		}
+
 		return true;
 	}
 

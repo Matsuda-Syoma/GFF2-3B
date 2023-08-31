@@ -13,7 +13,8 @@ private:
 	float speedX, speedY;			// プレイヤーの速度
 	float speedXMax;
 	float startX;
-	static const int WIDTH = 32;
+	int JumpHitDelay;
+	static const int WIDTH = 48;
 	static const int HEIGHT = 48;
 public:
 

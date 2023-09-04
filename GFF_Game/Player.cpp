@@ -49,36 +49,52 @@ void Player::Update()
 	if (JumpHitDelay > 0) {
 		JumpHitDelay--;
 	}
+	if (fabsf(inputRX()) > 0.3 || fabsf(inputRY()) > 0.3) {
+		CursorX = x + (w / 2) + inputRX() * 100;
+		CursorY = y + (h / 2) + inputRY() * 100;
+	}
+
+	if (PAD_INPUT::GetKeyFlg(XINPUT_BUTTON_RIGHT_SHOULDER)) {
+		speedX = (CursorX - (x + (w / 2))) * 5;
+		speedY = (CursorY - (y + (h / 2))) * 5 + -100;
+		JumpHitDelay = 3;
+	}
 
 	// 右入力
-	if (inputX() >= 0.3) {
+	if (inputLX() >= 0.3) {
 		//imageReverse = true;
 		if (speedX < speedXMax) {
 			//state = STATE::walk;
 			speedX += startX;
 		}
 	}
-	else if (inputX() == 0 && speedX > 0 && GroundFlg) {
+	else if (inputLX() == 0 && speedX > 0 && GroundFlg) {
 		//state = STATE::stay;
 		speedX += -startX * 2;
 	}
 
 	// 左入力
-	if (inputX() <= -0.3) {
+	if (inputLX() <= -0.3) {
 		//imageReverse = false;
 		if (speedX > -speedXMax) {
 			//state = STATE::walk;
 			speedX += -startX;
 		}
 	}
-	else if (fabsf(inputX()) < 0.1 && speedX < 0 && GroundFlg) {
+	else if (fabsf(inputLX()) < 0.3 && speedX < 0 && GroundFlg) {
 		//state = STATE::stay;
 		speedX += startX * 2;
 	}
-	if (fabsf(inputX()) < 0.1 && speedX < 0.15f && speedX > -0.15f && GroundFlg) {
+	if (fabsf(inputLX()) < 0.3 && GroundFlg && JumpHitDelay <= 3 - 2) {
+		speedX *= 0.7f;
+		if (speedX < 0.15f && speedX > -0.15f) {
+			speedX = 0;
+		}
 		//state = STATE::stay;
-		speedX = 0;
 	}
+
+	clsDx();
+	printfDx("%f", speedX);
 
 	// プレイヤーの座標更新
 	x += speedX / FRAMERATE;
@@ -88,11 +104,20 @@ void Player::Update()
 void Player::Draw() const
 {
 	DrawBox(box.left, box.top, box.right, box.bottom, 0xff0000, 1);
+	DrawCircle(CursorX, CursorY, 3, 0xffffff, 0);
 }
 
 // コントローラの入力を返す
-float Player::inputX() {
+float Player::inputLX() {
 	return round(((float)PAD_INPUT::GetPadThumbLX() / 32767) * 100) / 100;
+}
+
+float Player::inputRX() {
+	return round(((float)PAD_INPUT::GetPadThumbRX() / 32767) * 1000) / 1000;
+}
+
+float Player::inputRY() {
+	return round(((float)PAD_INPUT::GetPadThumbRY() / 32767) * 1000) / 1000;
 }
 
 bool Player::IsGround(Stage box) {

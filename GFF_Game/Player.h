@@ -13,6 +13,8 @@ private:
 	float speedX, speedY;			// プレイヤーの速度
 	float speedXMax;
 	float startX;
+	float CursorX;
+	float CursorY;
 	int JumpHitDelay;
 	static const int WIDTH = 48;
 	static const int HEIGHT = 48;
@@ -25,6 +27,8 @@ public:
 	void Draw()const;
 	bool IsGround(Stage box);
 	float GetBoxSide(BoxCollider box, int i);
-	float inputX();
+	float inputLX();
+	float inputRX();
+	float inputRY();
 };
 

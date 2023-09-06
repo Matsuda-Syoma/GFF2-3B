@@ -3,11 +3,13 @@
 #include"AbstractScene.h"
 #include"Player.h"
 #include"Stage.h"
+#include"UI.h"
 class GameMain : public AbstractScene
 {
 private:
 	Player* player;
 	Stage* stage[63];
+	UI* ui;
 public:
 	GameMain();
 	// コンストラクタ

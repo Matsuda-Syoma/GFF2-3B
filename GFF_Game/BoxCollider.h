@@ -22,6 +22,7 @@ public:
 	void DrawCollider() const;
 	// 1:ã2:‰º3:¶4:‰E
 	float GetSide(int i);
+	float GetCenterX();
 	float GetCenterY();
 };
 

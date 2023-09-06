@@ -38,7 +38,7 @@ void Stage::Update() {
 	}
 }
 
-void Stage::Draw() const
+void Stage::Draw(int _x,int _y) const
 {
 	//DrawGraph(box.left, box.top, Image, true);
 	DrawBox(box.left, box.top, box.right, box.bottom, 0xffffff, false);

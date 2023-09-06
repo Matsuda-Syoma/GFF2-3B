@@ -13,6 +13,7 @@ public:
 	~Stage();										// デストラクタ
 	void Init(int type, int move);
 	void Update();
+	void Draw(int _x, int _y) const;
 	void Draw()const;								// 描画処理
 	int GetImage();								// 画像読み込み
 };

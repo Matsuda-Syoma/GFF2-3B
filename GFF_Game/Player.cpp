@@ -158,8 +158,8 @@ void Player::Draw() const
 	}
 
 	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
-	DrawBox(box.left, box.top, box.right, box.bottom, 0xff0000, 1);
-	//DrawBox(((SCREEN_WIDTH - WIDTH) / 2), ((SCREEN_HEIGHT - HEIGHT) / 2), ((SCREEN_WIDTH - WIDTH) / 2) + WIDTH, ((SCREEN_HEIGHT - HEIGHT) / 2) + HEIGHT, 0xff0000, 1);
+	//DrawBox(box.left, box.top, box.right, box.bottom, 0xff0000, 1);
+	DrawBox(((SCREEN_WIDTH - WIDTH) / 2), ((SCREEN_HEIGHT - HEIGHT) / 2), ((SCREEN_WIDTH - WIDTH) / 2) + WIDTH, ((SCREEN_HEIGHT - HEIGHT) / 2) + HEIGHT, 0xff0000, 1);
 	DrawCircle(CursorX, CursorY, 3, 0xffffff, 0);
 }
 

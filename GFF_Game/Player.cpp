@@ -62,12 +62,12 @@ void Player::Update()
 		speedX = CursorLockX;
 		speedY = CursorLockY;
 
-		befx[0] = x;
-		befy[0] = y;
+		befx[0] = ((SCREEN_WIDTH - WIDTH) / 2);
+		befy[0] = ((SCREEN_HEIGHT - HEIGHT) / 2);
 
 		for (int i = AFTIMGNUM - 1; i > 0; i--) {
-			befx[i] = befx[i - 1];
-			befy[i] = befy[i - 1];
+			befx[i] = befx[i - 1] - speedX / FRAMERATE;
+			befy[i] = befy[i - 1] - speedY / FRAMERATE;
 			befalp[i] = 16;
 		}
 		if (DashCoolTime == 1) {
